@@ -1,11 +1,13 @@
 `include "./comparator/comparator.v"
 `include "./counter/counter.v"
 `include "./srff/srff.v"
+`include "./img_eeprom/img_eeprom.v"
 `timescale 1ns/1ns
 
 module tb_vga;
   reg clk;  // Clock signal
   reg rst;  // Reset signal
+  reg [23:0] dump [0:47999];
   wire [10:0] Hcount;  // Counter output
   wire HReset;
   wire [9:0] Vcount;  // Counter output
@@ -27,6 +29,8 @@ module tb_vga;
   wire isVSyncing;
   wire hSyncPulse;
   wire vSyncPulse;
+
+  wire [23:0] pixel;
 
   // Instantiate the counter module
   HCounter counter_inst (
@@ -124,6 +128,15 @@ module tb_vga;
 
   assign hSyncPulse = ~isHSyncing; // hSyncPulse active low when horizontal sync
   assign vSyncPulse = ~isVSyncing; // vSyncPulse active low when vertical sync
+
+  // get pixel data from dump
+  imgStorage imgStorage_inst (
+    .clk(clk),
+    .rst(rst),
+    .HDraw(isDrawingPixels),
+    .VDraw(isDrawingLines),
+    .data(pixel)
+  );
 
   // Clock generation for a 40 MHz clock
   initial begin
