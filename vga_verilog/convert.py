@@ -15,6 +15,26 @@ def resize_image(input_path, output_path, new_size=(800, 600)):
     except Exception as e:
         print(f"Error resizing image: {e}")
 
+def mem_resize_image(img: Image, new_size=(800, 600)):
+    try:
+        # Resize the image
+        resized_img = img.resize(new_size)
+        return resized_img
+
+    except Exception as e:
+        print(f"Error resizing image: {e}")
+
+def get_image_colors(input_path):
+  try: 
+    with Image.open(input_path) as img:
+      img = mem_resize_image(img)
+      img = img.convert('RGB')
+      pixels = img.load()
+      return pixels
+  except Exception as e:
+    print(f"Error getting image colors: {e}")
+    return
+
 if __name__ == "__main__":
     # Provide the input and output file paths
     input_image_path = "input_image.jpg"  # Change to the path of your input image
