@@ -6,12 +6,9 @@ def resize_image(input_path, output_path, new_size=(800, 600)):
         with Image.open(input_path) as img:
             # Resize the image
             resized_img = img.resize(new_size)
-
             # Save the resized image
             resized_img.save(output_path)
-
         print(f"Image resized successfully to {new_size} and saved to {output_path}")
-
     except Exception as e:
         print(f"Error resizing image: {e}")
 
@@ -20,7 +17,6 @@ def mem_resize_image(img: Image, new_size=(800, 600)):
         # Resize the image
         resized_img = img.resize(new_size)
         return resized_img
-
     except Exception as e:
         print(f"Error resizing image: {e}")
 
@@ -34,6 +30,8 @@ def get_image_colors(input_path):
   except Exception as e:
     print(f"Error getting image colors: {e}")
     return
+
+
 
 if __name__ == "__main__":
     # Provide the input and output file paths
