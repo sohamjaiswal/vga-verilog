@@ -7,7 +7,7 @@ module tb_counter;
   wire [10:0] count;  // Counter output
 
   // Instantiate the counter module
-  Counter counter_inst (
+  HCounter counter_inst (
     .clk(clk),
     .rst(rst),
     .count(count)

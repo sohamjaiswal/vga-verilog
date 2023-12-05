@@ -7,7 +7,7 @@ module tb_comparator;
   wire match;
 
   // Instantiate the comparator module
-  ElevenBitComparator comparator_inst (
+  Comparator11 comparator_inst (
     .input_value(input_value),
     .loaded_value(loaded_value),
     .match(match)
