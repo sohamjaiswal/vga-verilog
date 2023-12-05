@@ -1,0 +1,2 @@
+# how to run 
+This project has been tested on python 3.11.5 and icarus verilog. I recommend using pyenv to install python and icarus verilog according to system specifications. Outputs can be analyzed via provided python wave renderer or through utility like gtkwave.
