@@ -31,6 +31,9 @@ module tb_vga;
   wire vSyncPulse;
 
   wire [23:0] pixel;
+  wire [7:0] red;
+  wire [7:0] green;
+  wire [7:0] blue;
 
   // Instantiate the counter module
   HCounter counter_inst (
@@ -137,6 +140,11 @@ module tb_vga;
     .VDraw(isDrawingLines),
     .data(pixel)
   );
+
+  // get rgb data from pixel
+  assign red = pixel[23:16];
+  assign green = pixel[15:8];
+  assign blue = pixel[7:0];
 
   // Clock generation for a 40 MHz clock
   initial begin
